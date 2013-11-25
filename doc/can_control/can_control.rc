@@ -1,0 +1,305 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\can_control.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 61
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About USB<>CAN Control"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "USB<>CAN Control v1.0b8",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2009 Michael Wolf",IDC_STATIC,39,48,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "by Michael Wolf",IDC_STATIC,40,20,120,10
+    LTEXT           "http://www.mictronics.de",IDC_STATIC,40,35,120,10
+END
+
+IDD_CAN_CONTROL_DIALOG DIALOGEX 0, 0, 457, 369
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "USB<>CAN Control"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_SerialList,6,12,159,48,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SelBitrateCombo,174,12,60,90,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Open",IDC_OpenBtn,6,27,48,12
+    PUSHBUTTON      "Listen Only",IDC_LOModeBtn,57,27,48,12
+    EDITTEXT        IDC_IDEdit,13,128,55,13,ES_AUTOHSCROLL
+    CONTROL         "Extented",IDC_ExtCheck,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,87,129,44,10
+    CONTROL         "RTR",IDC_RTRCheck,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,129,31,10
+    EDITTEXT        IDC_Data1Edit,193,129,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Data2Edit,223,129,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Data3Edit,253,129,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Data4Edit,283,129,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Data5Edit,313,129,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Data6Edit,343,129,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Data7Edit,373,129,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Data8Edit,403,129,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ACREdit,6,57,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_AMREdit,6,86,63,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Status",IDC_StatusBtn,198,87,48,12
+    PUSHBUTTON      "Version",IDC_VersionBtn,258,87,48,12
+    PUSHBUTTON      "Time Stamp",IDC_TimestampBtn,219,168,45,12
+    PUSHBUTTON      "ALC",IDC_ReadALCBtn,78,87,48,12
+    PUSHBUTTON      "ECR",IDC_ReadECRBtn,138,87,48,12
+    EDITTEXT        IDC_ReadRegEdit,81,69,30,12
+    PUSHBUTTON      "Read",IDC_ReadRegBtn,114,69,48,12
+    EDITTEXT        IDC_WriteRegEdit,177,69,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WriteRegDataEdit,216,69,30,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Write",IDC_WriteRegBtn,252,69,48,12
+    PUSHBUTTON      "Send Frame",IDC_SendMsgBtn,15,146,48,12
+    PUSHBUTTON      "Clear Info Box",IDC_ClearBtn,399,87,54,12
+    PUSHBUTTON      "Clear Data",IDC_ClearDataBtn,396,146,48,12
+    PUSHBUTTON      "Exit",IDCANCEL,381,348,72,18,BS_CENTER | BS_VCENTER
+    GROUPBOX        "Select USB interface",IDC_SelOpenDev,3,3,165,39
+    RTEXT           "Sent Frames:",IDC_sendFramesStatic,15,348,45,8,0,WS_EX_RIGHT
+    RTEXT           "Received Frames:",IDC_recvFramesStatic,0,357,60,8,0,WS_EX_RIGHT
+    LTEXT           "0",IDC_SentCountStatic,66,348,50,8
+    LTEXT           "0",IDC_RecvCountStatic,66,357,50,8
+    LTEXT           "Frame List",IDC_MsgListStatic,6,170,45,10
+    GROUPBOX        "Read SJA1000 Register",IDC_ReadSJAStatic,78,45,90,39
+    LTEXT           "Register",IDC_RegStatic,81,57,30,8
+    GROUPBOX        "Write SJA1000 Register",IDC_WriteRegStatic,171,45,135,39
+    LTEXT           "Register",IDC_WriteRegName,177,57,27,8
+    LTEXT           "Data",IDC_WriteDataName,216,57,16,8
+    GROUPBOX        "Select Baudrate or set BTR Register",IDC_SelBaudStatic,171,3,135,39
+    GROUPBOX        "Transmit Frame",IDC_TxMsgStatic,3,108,450,55
+    GROUPBOX        "Identifier",IDC_IDStatic,8,118,65,26
+    GROUPBOX        "Frame Flags",IDC_FlagsStatic,83,118,90,26
+    GROUPBOX        "Data",IDC_DataStatic,183,118,260,26
+    LTEXT           "All values can be given in decimal or in hexadecimal form (0x...)",IDC_TextStatic,189,150,199,8
+    LTEXT           "User defined Baudrate (hex): BTR0:BTR1",IDC_BTRHelpStatic,174,30,132,8
+    GROUPBOX        "Acceptance Code",IDC_ACRStatic,3,45,69,27
+    GROUPBOX        "Acceptance Mask",IDC_AMRStatic,3,74,69,27
+    CONTROL         "List1",IDC_MSGLIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,3,183,275,159
+    PUSHBUTTON      "Clear Frame List",IDC_CLEARMSGLISTBTN,222,345,57,12
+    PUSHBUTTON      "Save Frame List",IDC_SAVELISTBTN,159,345,57,12
+    CONTROL         "List1",IDC_KNOWNID,"SysListView32",LVS_REPORT | LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,285,183,70,159
+    CONTROL         "List2",IDC_FILTERID,"SysListView32",LVS_REPORT | LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,381,183,72,159
+    PUSHBUTTON      ">>",IDC_ADDIDBTN,360,252,15,15
+    PUSHBUTTON      "<<",IDC_DELIDBTN,360,277,15,15
+    EDITTEXT        IDC_SENDCYCLICINTERVAL,84,146,30,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Cyclic",IDC_SENDCYCLIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,146,35,12
+    LTEXT           "ms",IDC_STATIC,117,150,10,9
+    CONTROL         "ASCII Data",IDC_ASCII_HEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,170,54,9
+    CONTROL         "",IDC_RICHEDIT21,"RichEdit20A",ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_BORDER | WS_VSCROLL | WS_TABSTOP,312,6,141,78
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,8
+ PRODUCTVERSION 1,0,0,8
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "CompanyName", "www.mictronics.de"
+            VALUE "FileDescription", "USB<>CAN Bus Interface Control Application"
+            VALUE "FileVersion", "1.0b8"
+            VALUE "InternalName", "CAN Control"
+            VALUE "LegalCopyright", "Copyright (C) 2009 Michael Wolf"
+            VALUE "OriginalFilename", "CAN-Control.EXE"
+            VALUE "ProductName", "CAN Control"
+            VALUE "ProductVersion", "1.0b8"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_CAN_CONTROL_DIALOG DLGINIT
+BEGIN
+    IDC_SelBitrateCombo, 0x403, 2, 0
+0x0035, 
+    IDC_SelBitrateCombo, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_SelBitrateCombo, 0x403, 3, 0
+0x3032, "\000" 
+    IDC_SelBitrateCombo, 0x403, 7, 0
+0x3333, 0x332e, 0x3333, "\000" 
+    IDC_SelBitrateCombo, 0x403, 7, 0
+0x3734, 0x362e, 0x3931, "\000" 
+    IDC_SelBitrateCombo, 0x403, 3, 0
+0x3035, "\000" 
+    IDC_SelBitrateCombo, 0x403, 7, 0
+0x3338, 0x332e, 0x3333, "\000" 
+    IDC_SelBitrateCombo, 0x403, 7, 0
+0x3539, 0x322e, 0x3833, "\000" 
+    IDC_SelBitrateCombo, 0x403, 4, 0
+0x3031, 0x0030, 
+    IDC_SelBitrateCombo, 0x403, 4, 0
+0x3231, 0x0035, 
+    IDC_SelBitrateCombo, 0x403, 4, 0
+0x3532, 0x0030, 
+    IDC_SelBitrateCombo, 0x403, 4, 0
+0x3035, 0x0030, 
+    IDC_SelBitrateCombo, 0x403, 4, 0
+0x3038, 0x0030, 
+    IDC_SelBitrateCombo, 0x403, 5, 0
+0x3031, 0x3030, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About can_control..."
+END
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\can_control.rc2""  // Nicht mit Microsoft Visual C++ bearbeitete Ressourcen\r\n"
+    "#include ""afxres.rc""         // Standardkomponenten\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\can_control.rc2"  // Nicht mit Microsoft Visual C++ bearbeitete Ressourcen
+#include "afxres.rc"         // Standardkomponenten
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
