@@ -1,2 +1,7 @@
 *~
 .[oa]
+/Debug/
+/Release/
+*.Debug
+*.Release
+*.pro.user
