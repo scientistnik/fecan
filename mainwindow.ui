@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>506</height>
+    <height>622</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -17,10 +17,94 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>ETerminal</string>
+   <string>FECAN</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout"/>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="central_lay">
+      <item>
+       <widget class="QTableWidget" name="table_reseive">
+        <property name="rowCount">
+         <number>5</number>
+        </property>
+        <property name="columnCount">
+         <number>6</number>
+        </property>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <row/>
+        <column>
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>DLC</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Data</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Period</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Count</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Comment</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="table_transmit">
+        <column>
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>DLC</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Data</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Period</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Count</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Comment</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -68,7 +152,7 @@
    <property name="minimumSize">
     <size>
      <width>900</width>
-     <height>150</height>
+     <height>60</height>
     </size>
    </property>
    <property name="baseSize">
@@ -90,19 +174,6 @@
     <number>4</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
-    <widget class="QPushButton" name="rescan">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>ReScan</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="ButtonConnect">
      <property name="geometry">
       <rect>
@@ -116,156 +187,30 @@
       <string>Connect</string>
      </property>
     </widget>
-    <widget class="QGroupBox" name="selectBox">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>10</y>
-       <width>191</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Select Serial Port</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QComboBox" name="serialPortInfoListBox"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="descriptionLabel">
-        <property name="text">
-         <string>Description:</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QGroupBox" name="parametersBox">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>10</y>
-       <width>451</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Select Parameters</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="baudRateLabel">
-        <property name="text">
-         <string>BaudRate:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="baudRateBox"/>
-      </item>
-      <item row="0" column="3">
-       <widget class="QComboBox" name="parityBox"/>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="flowControlLabel">
-        <property name="text">
-         <string>Flow control:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="dataBitsLabel">
-        <property name="text">
-         <string>Data bits:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="parityLabel">
-        <property name="text">
-         <string>Parity:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="dataBitsBox"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="stopBitsLabel">
-        <property name="text">
-         <string>Stop bits:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QComboBox" name="stopBitsBox"/>
-      </item>
-      <item row="0" column="5">
-       <widget class="QComboBox" name="flowControlBox"/>
-      </item>
-      <item row="1" column="4">
-       <widget class="QCheckBox" name="localEchoCheckBox">
-        <property name="text">
-         <string>Local echo</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QPushButton" name="applyButton">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>80</y>
+       <x>100</x>
+       <y>20</y>
        <width>75</width>
        <height>23</height>
       </rect>
      </property>
      <property name="text">
-      <string>Apply</string>
+      <string>Settings</string>
      </property>
     </widget>
     <widget class="QPushButton" name="clearScreen">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>110</y>
+       <x>200</x>
+       <y>20</y>
        <width>75</width>
        <height>23</height>
       </rect>
      </property>
      <property name="text">
       <string>Clear</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="startLog">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>110</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>StartLog</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="send_file">
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>110</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Send File</string>
      </property>
     </widget>
    </widget>

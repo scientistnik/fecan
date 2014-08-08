@@ -13,18 +13,14 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDockWidget>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -42,6 +38,9 @@ public:
     QAction *actionQuit;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
+    QVBoxLayout *central_lay;
+    QTableWidget *table_reseive;
+    QTableWidget *table_transmit;
     QMenuBar *menuBar;
     QMenu *menuCalls;
     QMenu *menuTools;
@@ -49,35 +48,15 @@ public:
     QStatusBar *statusBar;
     QDockWidget *dockWidget_2;
     QWidget *dockWidgetContents_2;
-    QPushButton *rescan;
     QPushButton *ButtonConnect;
-    QGroupBox *selectBox;
-    QGridLayout *gridLayout;
-    QComboBox *serialPortInfoListBox;
-    QLabel *descriptionLabel;
-    QGroupBox *parametersBox;
-    QGridLayout *gridLayout_2;
-    QLabel *baudRateLabel;
-    QComboBox *baudRateBox;
-    QComboBox *parityBox;
-    QLabel *flowControlLabel;
-    QLabel *dataBitsLabel;
-    QLabel *parityLabel;
-    QComboBox *dataBitsBox;
-    QLabel *stopBitsLabel;
-    QComboBox *stopBitsBox;
-    QComboBox *flowControlBox;
-    QCheckBox *localEchoCheckBox;
     QPushButton *applyButton;
     QPushButton *clearScreen;
-    QPushButton *startLog;
-    QPushButton *send_file;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(800, 506);
+        MainWindow->resize(800, 622);
         MainWindow->setMinimumSize(QSize(800, 140));
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QStringLiteral("actionAbout"));
@@ -114,6 +93,54 @@ public:
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        central_lay = new QVBoxLayout();
+        central_lay->setSpacing(6);
+        central_lay->setObjectName(QStringLiteral("central_lay"));
+        table_reseive = new QTableWidget(centralWidget);
+        if (table_reseive->columnCount() < 6)
+            table_reseive->setColumnCount(6);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        table_reseive->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        table_reseive->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        table_reseive->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        table_reseive->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        table_reseive->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        table_reseive->setHorizontalHeaderItem(5, __qtablewidgetitem5);
+        if (table_reseive->rowCount() < 5)
+            table_reseive->setRowCount(5);
+        table_reseive->setObjectName(QStringLiteral("table_reseive"));
+        table_reseive->setRowCount(5);
+        table_reseive->setColumnCount(6);
+
+        central_lay->addWidget(table_reseive);
+
+        table_transmit = new QTableWidget(centralWidget);
+        if (table_transmit->columnCount() < 6)
+            table_transmit->setColumnCount(6);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        table_transmit->setHorizontalHeaderItem(0, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        table_transmit->setHorizontalHeaderItem(1, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        table_transmit->setHorizontalHeaderItem(2, __qtablewidgetitem8);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        table_transmit->setHorizontalHeaderItem(3, __qtablewidgetitem9);
+        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+        table_transmit->setHorizontalHeaderItem(4, __qtablewidgetitem10);
+        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+        table_transmit->setHorizontalHeaderItem(5, __qtablewidgetitem11);
+        table_transmit->setObjectName(QStringLiteral("table_transmit"));
+
+        central_lay->addWidget(table_transmit);
+
+
+        verticalLayout->addLayout(central_lay);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -135,110 +162,21 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(dockWidget_2->sizePolicy().hasHeightForWidth());
         dockWidget_2->setSizePolicy(sizePolicy);
-        dockWidget_2->setMinimumSize(QSize(900, 150));
+        dockWidget_2->setMinimumSize(QSize(900, 60));
         dockWidget_2->setBaseSize(QSize(300, 150));
         dockWidget_2->setLayoutDirection(Qt::LeftToRight);
         dockWidget_2->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetVerticalTitleBar);
         dockWidgetContents_2 = new QWidget();
         dockWidgetContents_2->setObjectName(QStringLiteral("dockWidgetContents_2"));
-        rescan = new QPushButton(dockWidgetContents_2);
-        rescan->setObjectName(QStringLiteral("rescan"));
-        rescan->setGeometry(QRect(10, 50, 75, 23));
         ButtonConnect = new QPushButton(dockWidgetContents_2);
         ButtonConnect->setObjectName(QStringLiteral("ButtonConnect"));
         ButtonConnect->setGeometry(QRect(10, 20, 75, 23));
-        selectBox = new QGroupBox(dockWidgetContents_2);
-        selectBox->setObjectName(QStringLiteral("selectBox"));
-        selectBox->setGeometry(QRect(90, 10, 191, 91));
-        gridLayout = new QGridLayout(selectBox);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        serialPortInfoListBox = new QComboBox(selectBox);
-        serialPortInfoListBox->setObjectName(QStringLiteral("serialPortInfoListBox"));
-
-        gridLayout->addWidget(serialPortInfoListBox, 0, 0, 1, 1);
-
-        descriptionLabel = new QLabel(selectBox);
-        descriptionLabel->setObjectName(QStringLiteral("descriptionLabel"));
-
-        gridLayout->addWidget(descriptionLabel, 1, 0, 1, 1);
-
-        parametersBox = new QGroupBox(dockWidgetContents_2);
-        parametersBox->setObjectName(QStringLiteral("parametersBox"));
-        parametersBox->setGeometry(QRect(310, 10, 451, 91));
-        gridLayout_2 = new QGridLayout(parametersBox);
-        gridLayout_2->setSpacing(6);
-        gridLayout_2->setContentsMargins(11, 11, 11, 11);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        baudRateLabel = new QLabel(parametersBox);
-        baudRateLabel->setObjectName(QStringLiteral("baudRateLabel"));
-
-        gridLayout_2->addWidget(baudRateLabel, 0, 0, 1, 1);
-
-        baudRateBox = new QComboBox(parametersBox);
-        baudRateBox->setObjectName(QStringLiteral("baudRateBox"));
-
-        gridLayout_2->addWidget(baudRateBox, 0, 1, 1, 1);
-
-        parityBox = new QComboBox(parametersBox);
-        parityBox->setObjectName(QStringLiteral("parityBox"));
-
-        gridLayout_2->addWidget(parityBox, 0, 3, 1, 1);
-
-        flowControlLabel = new QLabel(parametersBox);
-        flowControlLabel->setObjectName(QStringLiteral("flowControlLabel"));
-
-        gridLayout_2->addWidget(flowControlLabel, 0, 4, 1, 1);
-
-        dataBitsLabel = new QLabel(parametersBox);
-        dataBitsLabel->setObjectName(QStringLiteral("dataBitsLabel"));
-
-        gridLayout_2->addWidget(dataBitsLabel, 1, 0, 1, 1);
-
-        parityLabel = new QLabel(parametersBox);
-        parityLabel->setObjectName(QStringLiteral("parityLabel"));
-
-        gridLayout_2->addWidget(parityLabel, 0, 2, 1, 1);
-
-        dataBitsBox = new QComboBox(parametersBox);
-        dataBitsBox->setObjectName(QStringLiteral("dataBitsBox"));
-
-        gridLayout_2->addWidget(dataBitsBox, 1, 1, 1, 1);
-
-        stopBitsLabel = new QLabel(parametersBox);
-        stopBitsLabel->setObjectName(QStringLiteral("stopBitsLabel"));
-
-        gridLayout_2->addWidget(stopBitsLabel, 1, 2, 1, 1);
-
-        stopBitsBox = new QComboBox(parametersBox);
-        stopBitsBox->setObjectName(QStringLiteral("stopBitsBox"));
-
-        gridLayout_2->addWidget(stopBitsBox, 1, 3, 1, 1);
-
-        flowControlBox = new QComboBox(parametersBox);
-        flowControlBox->setObjectName(QStringLiteral("flowControlBox"));
-
-        gridLayout_2->addWidget(flowControlBox, 0, 5, 1, 1);
-
-        localEchoCheckBox = new QCheckBox(parametersBox);
-        localEchoCheckBox->setObjectName(QStringLiteral("localEchoCheckBox"));
-        localEchoCheckBox->setChecked(true);
-
-        gridLayout_2->addWidget(localEchoCheckBox, 1, 4, 1, 1);
-
         applyButton = new QPushButton(dockWidgetContents_2);
         applyButton->setObjectName(QStringLiteral("applyButton"));
-        applyButton->setGeometry(QRect(10, 80, 75, 23));
+        applyButton->setGeometry(QRect(100, 20, 75, 23));
         clearScreen = new QPushButton(dockWidgetContents_2);
         clearScreen->setObjectName(QStringLiteral("clearScreen"));
-        clearScreen->setGeometry(QRect(10, 110, 75, 23));
-        startLog = new QPushButton(dockWidgetContents_2);
-        startLog->setObjectName(QStringLiteral("startLog"));
-        startLog->setGeometry(QRect(290, 110, 75, 23));
-        send_file = new QPushButton(dockWidgetContents_2);
-        send_file->setObjectName(QStringLiteral("send_file"));
-        send_file->setGeometry(QRect(420, 110, 75, 23));
+        clearScreen->setGeometry(QRect(200, 20, 75, 23));
         dockWidget_2->setWidget(dockWidgetContents_2);
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(4), dockWidget_2);
 
@@ -260,7 +198,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "ETerminal", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "FECAN", 0));
         actionAbout->setText(QApplication::translate("MainWindow", "&About", 0));
 #ifndef QT_NO_TOOLTIP
         actionAbout->setToolTip(QApplication::translate("MainWindow", "About program", 0));
@@ -289,25 +227,37 @@ public:
         actionClear->setShortcut(QApplication::translate("MainWindow", "Alt+L", 0));
         actionQuit->setText(QApplication::translate("MainWindow", "&Quit", 0));
         actionQuit->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", 0));
+        QTableWidgetItem *___qtablewidgetitem = table_reseive->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "ID", 0));
+        QTableWidgetItem *___qtablewidgetitem1 = table_reseive->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "DLC", 0));
+        QTableWidgetItem *___qtablewidgetitem2 = table_reseive->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Data", 0));
+        QTableWidgetItem *___qtablewidgetitem3 = table_reseive->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Period", 0));
+        QTableWidgetItem *___qtablewidgetitem4 = table_reseive->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "Count", 0));
+        QTableWidgetItem *___qtablewidgetitem5 = table_reseive->horizontalHeaderItem(5);
+        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "Comment", 0));
+        QTableWidgetItem *___qtablewidgetitem6 = table_transmit->horizontalHeaderItem(0);
+        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "ID", 0));
+        QTableWidgetItem *___qtablewidgetitem7 = table_transmit->horizontalHeaderItem(1);
+        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "DLC", 0));
+        QTableWidgetItem *___qtablewidgetitem8 = table_transmit->horizontalHeaderItem(2);
+        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "Data", 0));
+        QTableWidgetItem *___qtablewidgetitem9 = table_transmit->horizontalHeaderItem(3);
+        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "Period", 0));
+        QTableWidgetItem *___qtablewidgetitem10 = table_transmit->horizontalHeaderItem(4);
+        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "Count", 0));
+        QTableWidgetItem *___qtablewidgetitem11 = table_transmit->horizontalHeaderItem(5);
+        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow", "Comment", 0));
         menuCalls->setTitle(QApplication::translate("MainWindow", "Calls", 0));
         menuTools->setTitle(QApplication::translate("MainWindow", "Tools", 0));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0));
         dockWidget_2->setWindowTitle(QString());
-        rescan->setText(QApplication::translate("MainWindow", "ReScan", 0));
         ButtonConnect->setText(QApplication::translate("MainWindow", "Connect", 0));
-        selectBox->setTitle(QApplication::translate("MainWindow", "Select Serial Port", 0));
-        descriptionLabel->setText(QApplication::translate("MainWindow", "Description:", 0));
-        parametersBox->setTitle(QApplication::translate("MainWindow", "Select Parameters", 0));
-        baudRateLabel->setText(QApplication::translate("MainWindow", "BaudRate:", 0));
-        flowControlLabel->setText(QApplication::translate("MainWindow", "Flow control:", 0));
-        dataBitsLabel->setText(QApplication::translate("MainWindow", "Data bits:", 0));
-        parityLabel->setText(QApplication::translate("MainWindow", "Parity:", 0));
-        stopBitsLabel->setText(QApplication::translate("MainWindow", "Stop bits:", 0));
-        localEchoCheckBox->setText(QApplication::translate("MainWindow", "Local echo", 0));
-        applyButton->setText(QApplication::translate("MainWindow", "Apply", 0));
+        applyButton->setText(QApplication::translate("MainWindow", "Settings", 0));
         clearScreen->setText(QApplication::translate("MainWindow", "Clear", 0));
-        startLog->setText(QApplication::translate("MainWindow", "StartLog", 0));
-        send_file->setText(QApplication::translate("MainWindow", "Send File", 0));
     } // retranslateUi
 
 };

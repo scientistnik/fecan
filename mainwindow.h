@@ -52,6 +52,8 @@
 #include <QTextStream>
 #include <QFileDialog>
 
+#include "settingswindow.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -59,37 +61,19 @@ class MainWindow;
 
 class Console;
 class QIntValidator;
+//class SettingsWindow;
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    struct Settings {
-        QString name;
-        qint32 baudRate;
-        QString stringBaudRate;
-        QSerialPort::DataBits dataBits;
-        QString stringDataBits;
-        QSerialPort::Parity parity;
-        QString stringParity;
-        QSerialPort::StopBits stopBits;
-        QString stringStopBits;
-        QSerialPort::FlowControl flowControl;
-        QString stringFlowControl;
-        bool localEchoEnabled;
-    };
-
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    Settings settingsFun() const;
+
 
 private slots:
-    void showPortInfo(int idx);
-    void apply();
-    void checkCustomBaudRatePolicy(int idx);
-
     void openSerialPort();
     void closeSerialPort();
     void about();
@@ -98,38 +82,19 @@ private slots:
 
     void handleError(QSerialPort::SerialPortError error);
 
-    void on_rescan_clicked();
-
     void on_ButtonConnect_clicked();
-
     void on_applyButton_clicked();
-
     void on_clearScreen_clicked();
 
-    void on_startLog_clicked();
-
-    void on_send_file_clicked();
-
 private:
-    void fillPortsParameters();
-    void fillPortsInfo();
-    void updateSettings();
-
     void initActionsConnections();
 
-private:
     Ui::MainWindow *ui;
     Console *console;
     QSerialPort *serial;
+    SettingsWindow *set_win;
 
-    Settings currentSettings;
-    QIntValidator *intValidator;
-
-    QFileDialog *file_log;
-    bool log_enable;
-    QString name_logfile;
-    QFile *logfile;
-    QFileDialog *file_send;
+    SettingsWindow::Settings currentSettings;
 };
 
 #endif // MAINWINDOW_H
