@@ -51,7 +51,6 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include <QIntValidator>
 #include <QLineEdit>
-#include <QTableWidgetItem>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -69,6 +68,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionDisconnect->setEnabled(false);
     ui->actionQuit->setEnabled(true);
     ui->actionConfigure->setEnabled(true);
+    raw_data = "";
+    can_message = NULL;
 
     initActionsConnections();
 
@@ -136,8 +137,9 @@ void MainWindow::readData()
 {
     QByteArray data = serial->readAll();
     console->putData(data);
-    QTableWidgetItem * exp = new QTableWidgetItem(data.constData());
-    ui->table_reseive->setItem(0,0,exp);
+
+    raw_data += data;
+    ProcessRawData();
 }
 
 void MainWindow::handleError(QSerialPort::SerialPortError error)
@@ -182,4 +184,62 @@ void MainWindow::on_applyButton_clicked()
 void MainWindow::on_clearScreen_clicked()
 {
     console->clear();
+}
+
+void MainWindow::ProcessRawData()
+{
+    int position;
+    int num_row = 0;
+    struct Can_Message * index_message = can_message;
+
+    if ( (position = raw_data.indexOf("\u000D")) != -1) {
+        QString id = raw_data.mid(1,8);
+
+
+        if (index_message == NULL) {
+            index_message = new struct Can_Message;
+            index_message->next = NULL;
+
+            index_message->id = new QTableWidgetItem(raw_data.mid(1,8));
+            index_message->dlc = new QTableWidgetItem(raw_data.mid(9,1));
+            index_message->data = new QTableWidgetItem(raw_data.mid(10,16));
+            index_message->time = new QTableWidgetItem(raw_data.mid(26,4));
+
+            ui->table_reseive->setItem(num_row,0, index_message->id);
+            ui->table_reseive->setItem(num_row,1, index_message->dlc);
+            ui->table_reseive->setItem(num_row,2, index_message->data);
+            ui->table_reseive->setItem(num_row,3, index_message->time);
+        }
+
+        while(index_message != NULL) {
+            if (id.compare(index_message->id->text())) {
+                //can_message->id->setText(raw_data.mid(1,8));
+                can_message->dlc->setText(raw_data.mid(9,1));
+                can_message->data->setText(raw_data.mid(10,16));
+                can_message->time->setText(raw_data.mid(26,4));
+                break;
+            }
+            num_row++;
+            if (index_message->next == NULL) {
+                index_message->next = new struct Can_Message;
+                index_message = index_message->next;
+                index_message->next = NULL;
+
+                index_message->id = new QTableWidgetItem(raw_data.mid(1,8));
+                index_message->dlc = new QTableWidgetItem(raw_data.mid(9,1));
+                index_message->data = new QTableWidgetItem(raw_data.mid(10,16));
+                index_message->time = new QTableWidgetItem(raw_data.mid(26,4));
+
+                ui->table_reseive->setItem(num_row,0, index_message->id);
+                ui->table_reseive->setItem(num_row,1, index_message->dlc);
+                ui->table_reseive->setItem(num_row,2, index_message->data);
+                ui->table_reseive->setItem(num_row,3, index_message->time);
+                break;
+            }
+            index_message = index_message->next;
+        }
+
+        raw_data.remove(0, position+2);
+    }
+
 }

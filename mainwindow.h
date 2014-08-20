@@ -51,6 +51,7 @@
 #include <QtSerialPort/QSerialPort>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QTableWidgetItem>
 
 #include "settingswindow.h"
 
@@ -68,10 +69,17 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    struct Can_Message {
+        QTableWidgetItem * id;
+        QTableWidgetItem * dlc;
+        QTableWidgetItem * data;
+        QTableWidgetItem * time;
+        struct Can_Message *next;
+    };
+
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
-
 
 private slots:
     void openSerialPort();
@@ -88,6 +96,7 @@ private slots:
 
 private:
     void initActionsConnections();
+    void ProcessRawData(void);
 
     Ui::MainWindow *ui;
     Console *console;
@@ -95,6 +104,8 @@ private:
     SettingsWindow *set_win;
 
     SettingsWindow::Settings currentSettings;
+    QString raw_data;
+    struct Can_Message *can_message;
 };
 
 #endif // MAINWINDOW_H
